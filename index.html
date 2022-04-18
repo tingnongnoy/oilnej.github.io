@@ -16,27 +16,27 @@
   </head>
   <body>
     <a-scene mindar-image="imageTargetSrc: ./target.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <!--
+     
         <a-assets>
    
           <video
                   id="card0"
-                  src="videos/Quik_55.MOV"
+                  src="./invitation2.mp4"
                   autoplay
                   preload="auto"
                   loop="true"
                   muted="true"
                   response-type="arraybuffer" crossorigin webkit-playsinline playsinline controls
            ></video>
-         
+         <!--
           <img
                   id="card1"
                   src="./SS_Logo.png"
           />
-      
+          -->
       
          </a-assets>
-        -->
+        
       
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <a-entity mindar-image-target="targetIndex: 0">
@@ -50,9 +50,9 @@
           rotation="0 0 0"
         ></a-plane>
          -->
-        <!--
+        
         <a-video
-                   
+                   alpha-video
                    src="#card0"
                    width="2"
                    height="1"
@@ -62,9 +62,9 @@
                    play="true"
                    
          ></a-video>
-        -->
         
-        <a-plane color="pink" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> 
+        
+        <!-- <a-plane color="pink" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> -->
          
         <!--  <video preload="none" id="invitation" response-type="arraybuffer" loop="true" crossorigin webkit-playsinline playsinline controls>
                     <source  src="./invitation.mov">
