@@ -9,7 +9,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-        <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+        <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
         <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"></script>
 
 
@@ -112,7 +112,7 @@
                 <!-- Invitation  Video -->
 
                 <video preload="none" id="invitation" response-type="arraybuffer" loop="true" crossorigin webkit-playsinline playsinline controls>
-                    <source  src="videos/oilnej.mov">
+                    <source  src="videos/invitation2.mp4">
                 </video>
 
                 <!-- Map point Image -->
@@ -131,7 +131,7 @@
 
             <a-marker id="marker1" type='pattern' url='markers/invi-pattern-marker.patt' video-vidhandler>
                 <!--<a-box position='0 0 0' material='color: red;'></a-box>-->
-                <a-plane scale = "4 2" position='0 0.1 0' rotation="-90 0 0" material='transparent:true;src:#invitation' controls></a-plane>
+                <a-plane scale = "4 2" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#invitation' controls></a-plane>
                 <!--<a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Fun Moments"></a-entity>-->
             </a-marker>
 
@@ -142,7 +142,7 @@
                 <!--<a-plane scale = "4 2" position='0 0.1 0' rotation="-90 0 0" material='transparent:true;src:#invitation' controls></a-plane>-->
                 <!--<a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Fun Moments"></a-entity>-->
 
-                <a-plane scale="2 1" position="0 0.1 0" rotation="-90 0 0" src="#texture">
+                <a-plane scale="2 1" position="0 0.1 0" rotation="0 0 0" src="#texture">
                     <a-text id="timer" clock-text value="00:00:00:00" width="1.5" height="1" position="-0.451 0.041 0.000" color="#FFFFFF"></a-text>
                 </a-plane>
 
@@ -153,7 +153,7 @@
 
             <a-marker id="marker3" type='pattern' url='markers/map-pattern-marker.patt' emitevents="true" cursor="rayOrigin: mouse" mappoint-handler>
                 <!--<a-box position='0 0 0' material='color: red;'></a-box>-->
-                <a-plane id="img-map" scale = "2 2" position='0 0.1 0' rotation="-90 0 0" material='transparent:true;src:#map-point'></a-plane>
+                <a-plane id="img-map" scale = "2 2" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
                 <!--<a-entity text="font: https://cdn.aframe.io/fonts/mozillavr.fnt; value: Fun Moments"></a-entity>-->
             </a-marker>
 
