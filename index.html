@@ -13,12 +13,108 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    
+    <script>
+
+              // Invitation Video Handler
+
+              AFRAME.registerComponent('video-vidhandler', {
+                    init: function() {
+		                 console.log('video init entered');
+                    this.toggle = false;
+                    this.vid = document.querySelector("#invitation");
+                    this.vid.pause();
+                },
+                tick: function() {
+                    if (this.el.object3D.visible == true) {
+                        if (!this.toggle) {
+                            this.toggle = true;
+                            this.vid.play();
+                        }
+                    } else {
+                        this.toggle = false;
+                        this.vid.pause();
+                    }
+                }
+            });
+
+            // Count down Timer and Countdown Timer Component
+
+            AFRAME.registerComponent('clock-text', {
+                init: function() {
+		    console.log('Timer init entered');
+                    var el = this.el;
+                    this.ready = false;
+		    el.addEventListener('textfontset', function() {
+    	            	this.ready = true;
+		    }.bind(this));
+                },
+                tick: function() {
+  	        	var el = this.el;
+                    if (!this.ready) {
+    	                return;
+                    }
+
+                    var endTime = new Date("May 23, 2022 14:00:00").getTime();
+                    var timeRem;
+
+                    var timer = setInterval(function() {
+                        var currTime = new Date().getTime();
+
+                        var diff = endTime - currTime;
+
+                        if(diff > 0) {
+                            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                            var secs = Math.floor((diff % (1000 * 60)) / 1000);
+                            //console.log(days, hours, mins, secs);
+                            var timeRem = days + " days " + hours + " hrs " + mins + " mins " + secs + " secs ";
+                            //console.log(timeRem);
+                        } else {
+                            var timeRem = "!!!!Finally! The day has come.!!!!";
+                        }
+                        el.setAttribute('value', timeRem);
+                    }, 1000);
+
+                }
+            });
+
+
+	    // Mappoint component
+
+	    AFRAME.registerComponent('mappoint-handler', {
+
+		init: function() {
+		    //console.log("I was triggered");
+		    const marker3 = document.querySelector("#marker3");
+		    const imgMap = document.querySelector("#img-map");
+
+		    marker3.addEventListener('click', function(ev, target) {
+		        const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+			if (imgMap && intersectedElement === imgMap) {
+			    console.log("Clicked");
+			    document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
+			}
+		    });
+		}
+	    });
+
+
+        </script>
+    
+    
+    
+    
+    
+    
+    
   </head>
   <body>
     <a-scene mindar-image="imageTargetSrc: ./target.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
      
         <a-assets>
-   
+         <!--
           <video
                   id="card0"
                   src="./invitation2.mp4"
@@ -34,12 +130,19 @@
                   src="./SS_Logo.png"
           />
           -->
+          -->
       
+           <video preload="none" id="invitation" response-type="arraybuffer" loop="true" preload="auto" muted crossorigin webkit-playsinline playsinline controls>
+                    <source  src="videos/Quik_55.MOV">
+                </video>
+          
          </a-assets>
         
       
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <a-entity mindar-image-target="targetIndex: 0">
+        
+        <a-plane scale = "4 2" position='0 0.1 0' rotation="-90 0 0" material='transparent:true;src:#invitation' play="true" controls></a-plane>
         
         <!--
          <a-plane
@@ -50,7 +153,7 @@
           rotation="0 0 0"
         ></a-plane>
          -->
-        
+        <!--
         <a-video
                    alpha-video
                    src="#card0"
@@ -62,7 +165,7 @@
                    play="true"
                    
          ></a-video>
-        
+        -->
         
         <!-- <a-plane color="pink" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> -->
          
