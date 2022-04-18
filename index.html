@@ -16,8 +16,26 @@
   </head>
   <body>
     <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      
+        <a-assets>
+   
+             <img
+               id="card1"
+               src="https://cdn.glitch.global/644ffc8d-f16a-4136-9daf-b2a8d5be4cd1/Jesper1_2.jpg?v=1645538130237"
+             />
+          </a-assets>
+        
+      
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <a-entity mindar-image-target="targetIndex: 0">
+        
+        <a-plane
+          src="#card1"
+          position="0 0 0.35"
+          height="1.5"
+          width="1"
+          rotation="0 0 0"
+        ></a-plane>
         
         
         <!-- <a-plane color="pink" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> --<
