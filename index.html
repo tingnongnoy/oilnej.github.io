@@ -132,7 +132,7 @@
           -->
           -->
       
-           <video preload="none" id="invitation" response-type="arraybuffer" loop="true" preload="auto" muted="true" crossorigin webkit-playsinline playsinline controls>
+           <video preload="none" id="invitation" response-type="arraybuffer" loop="true" preload="auto" muted="false" crossorigin webkit-playsinline playsinline controls>
                     <source  src="videos/Quik_55.MOV">
                 </video>
           
@@ -142,7 +142,7 @@
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <a-entity mindar-image-target="targetIndex: 0" video-vidhandler>
         
-        <a-plane scale="1 1 1" position="0 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
+        <a-plane scale="0.5 0.5 0.5" position="0 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
         
         <!--
          <a-plane
