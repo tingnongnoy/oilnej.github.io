@@ -85,22 +85,22 @@
 
 	    // Mappoint component
 
-	    AFRAME.registerComponent('mappoint-handler', {
+//	    AFRAME.registerComponent('mappoint-handler', {
 
-		init: function() {
-		    //console.log("I was triggered");
-		    const marker3 = document.querySelector("#marker3");
-		    const imgMap = document.querySelector("#img-map");
+//		init: function() {
+//		    //console.log("I was triggered");
+//		    const marker3 = document.querySelector("#marker3");
+//		    const imgMap = document.querySelector("#img-map");
 
-		    marker3.addEventListener('click', function(ev, target) {
-		        const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-			if (imgMap && intersectedElement === imgMap) {
-			    console.log("Clicked");
-			    document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
-			}
-		    });
-		}
-	    });
+//		    marker3.addEventListener('click', function(ev, target) {
+//		        const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+//			if (imgMap && intersectedElement === imgMap) {
+//			    console.log("Clicked");
+//			    document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
+//			}
+//		    });
+//		}
+//	    });
 
 
         </script>
@@ -109,7 +109,7 @@
       document.addEventListener("DOMContentLoaded", function() {
 	const sceneEl = document.querySelector('a-scene');
 	const arSystem = sceneEl.systems["mindar-image-system"];
-	
+	const exampleTarget = document.querySelector('#example-target');
 	const img-map = document.querySelector('#img-map');
 	
 	
@@ -163,7 +163,7 @@
 	      
       </a-entity>
         
-      <a-entity mindar-image-target="targetIndex: 2"  mappoint-handler>
+      <a-entity id="example-target" mindar-image-target="targetIndex: 2"  mappoint-handler>
 	      
         <a-plane id="img-map" class="clickable" scale="0.8 0.8 0.8" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
       
