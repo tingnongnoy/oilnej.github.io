@@ -95,9 +95,11 @@
 		    marker3.addEventListener('click', function(ev, target) {
 		        const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
 			if (imgMap && intersectedElement === imgMap) {
-			    console.log("Clicked");
-			    document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
+			    
+			   // console.log("Clicked");
+			   // document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
 			   
+			    console.log('I was clicked at: ', evt.detail.intersection.point);
 			}
 		    });
 		}
@@ -149,7 +151,7 @@
 	      
      </a-entity>
   -->      
-      <a-entity mindar-image-target="targetIndex: 2" cursor="fuse: true; fuseTimeout: 5000" mappoint-handler>
+      <a-entity id="marker3" mindar-image-target="targetIndex: 2" cursor="fuse: true; fuseTimeout: 5000" mappoint-handler>
 	
            <a-plane id="img-map" scale="1 1 1" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
 
