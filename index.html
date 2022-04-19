@@ -129,26 +129,26 @@
          </a-assets>
         
       
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
 	    
       <a-entity mindar-image-target="targetIndex: 0" video-vidhandler>        
       
-	      <a-plane scale="1 1 1" position="1 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
+	      <a-plane scale="1 1 1" position="0 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
       
       </a-entity>    
 	    
 	
       <a-entity mindar-image-target="targetIndex: 1">
         
-	<a-plane scale="0.8 0.8 0.8" position="0 0.1 0" rotation="0 0 0" src="#texture">
+	<a-plane scale="0.8 0.8 0.8" position="0 0.5 0" rotation="0 0 0" src="#texture">
            <a-text id="timer" clock-text value="00:00:00:00" width="1.5" height="1" position="-0.451 0.041 0.000" color="#FFFFFF"></a-text>
         </a-plane>
 	      
       </a-entity>
         
-      <a-entity mindar-image-target="targetIndex: 2" emitevents="true" cursor="rayOrigin: mouse" mappoint-handler>
+      <a-entity mindar-image-target="targetIndex: 2"  mappoint-handler>
 	      
-        <a-plane id="img-map" scale="0.8 0.8 0.8" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
+        <a-plane id="img-map" class="clickable" scale="0.8 0.8 0.8" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
       
       </a-entity>
 	    
