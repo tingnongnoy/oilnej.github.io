@@ -1,160 +1,73 @@
 <html>
   <head>
-	<title> AR Invitation </title>  
-	  
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"></script>
-    
-    
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
-    
     <script>
-
-              // Invitation Video Handler
-
-              AFRAME.registerComponent('video-vidhandler', {
-                    init: function() {
-		                 console.log('video init entered');
-                    this.toggle = false;
-                    this.vid = document.querySelector("#invitation");
-                    this.vid.pause();
-                },
-                tick: function() {
-                    if (this.el.object3D.visible == true) {
-                        if (!this.toggle) {
-                            this.toggle = true;
-                            this.vid.play();
-                        }
-                    } else {
-                        this.toggle = false;
-                        this.vid.pause();
-                    }
-                }
-            });
-
-            // Count down Timer and Countdown Timer Component
-
-            AFRAME.registerComponent('clock-text', {
-                init: function() {
-		    console.log('Timer init entered');
-                    var el = this.el;
-                    this.ready = false;
-		    el.addEventListener('textfontset', function() {
-    	            	this.ready = true;
-		    }.bind(this));
-                },
-                tick: function() {
-  	        	var el = this.el;
-                    if (!this.ready) {
-    	                return;
-                    }
-
-                    var endTime = new Date("May 23, 2022 14:00:00").getTime();
-                    var timeRem;
-
-                    var timer = setInterval(function() {
-                        var currTime = new Date().getTime();
-
-                        var diff = endTime - currTime;
-
-                        if(diff > 0) {
-                            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                            var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                            var secs = Math.floor((diff % (1000 * 60)) / 1000);
-                            //console.log(days, hours, mins, secs);
-                            var timeRem = days + " days " + hours + " hrs " + mins + " mins " + secs + " secs ";
-                            //console.log(timeRem);
-                        } else {
-                            var timeRem = "!!!!Finally! The day has come.!!!!";
-                        }
-                        el.setAttribute('value', timeRem);
-                    }, 1000);
-
-                }
-            });
-
-
-	    // Mappoint component
-
-	    AFRAME.registerComponent('mappoint-handler', {
-
-		init: function() {
-		    //console.log("I was triggered");
-		    const marker3 = document.querySelector("#marker3");
-		    const imgMap = document.querySelector("#img-map");
-
-		    marker3.addEventListener('click', function(ev, target) {
-		        const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-			if (imgMap && intersectedElement === imgMap) {
-			    console.log("Clicked");
-			    document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
-			}
-		    });
-		}
-	    });
-
-
-        </script>
-    
- 
-	  
-	  
+      document.addEventListener("DOMContentLoaded", function() {
+	const sceneEl = document.querySelector('a-scene');
+	const arSystem = sceneEl.systems["mindar-image-system"];
+	const exampleTarget = document.querySelector('#example-target');
+	const examplePlane = document.querySelector('#example-plane');
+	const startButton = document.querySelector("#example-start-button");
+	const stopButton = document.querySelector("#example-stop-button");
+	const pauseButton = document.querySelector("#example-pause-button");
+	const pauseKeepVideoButton = document.querySelector("#example-pause-keep-video-button");
+	const unpauseButton = document.querySelector("#example-unpause-button");
+	startButton.addEventListener('click', () => {
+	  console.log("start");
+	  arSystem.start(); // start AR 
+	});
+	stopButton.addEventListener('click', () => {
+	  arSystem.stop(); // stop AR 
+	});
+	pauseButton.addEventListener('click', () => {
+	  arSystem.pause(); // pause AR, keep video feed
+	});
+	pauseKeepVideoButton.addEventListener('click', () => {
+	  arSystem.pause(true); // pause AR and video
+	});
+	unpauseButton.addEventListener('click', () => {
+	  arSystem.unpause(); // unpause AR and video
+	});
+	// arReady event triggered when ready
+	sceneEl.addEventListener("arReady", (event) => {
+	  // console.log("MindAR is ready")
+	});
+	// arError event triggered when something went wrong. Mostly browser compatbility issue
+	sceneEl.addEventListener("arError", (event) => {
+	  // console.log("MindAR failed to start")
+	});
+	// detect target found
+	exampleTarget.addEventListener("targetFound", event => {
+	  console.log("target found");
+	});
+	// detect target lost
+	exampleTarget.addEventListener("targetLost", event => {
+	  console.log("target lost");
+	});
+	// detect click event
+	examplePlane.addEventListener("click", event => {
+	  console.log("plane click");
+	});
+      });
+    </script>
   </head>
   <body>
-    <a-scene mindar-image="imageTargetSrc: ./targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-     
-        <a-assets>
-         
-	  <!-- Invitation  Video -->
-           <video preload="none" id="invitation" response-type="arraybuffer" loop="true" preload="auto" muted="true" crossorigin webkit-playsinline playsinline controls>
-                    <source  src="videos/Quik_55.MOV">
-           </video>
-	   
-	  <!-- Map point Image -->
+    <div style="position: absolute; z-index: 1000">
+      <button id="example-start-button">Start</button>
+      <button id="example-pause-button">Pause</button>
+      <button id="example-pause-keep-video-button">Pause (keep video)</button>
+      <button id="example-unpause-button">UnPause</button>
+      <button id="example-stop-button">Stop</button>
+    </div>
+    <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/card.mind; autoStart: false;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 1.1.4; objects: .clickable"></a-camera>
 
-                <img id="map-point" src="images/map-navigate.jpg">
-
-           <!-- Texture Image -->
-
-                <img id="texture" src="images/texture.jpg">	
-		
-	          
-         </a-assets>
-        
-      
-      <a-camera position="0 0 0" look-controls="enabled: false"  emitevents="true" cursor="rayOrigin: mouse;" raycaster="far: 1.1.4; objects: .clickable"></a-camera>
-	    
- <!--     <a-entity mindar-image-target="targetIndex: 0" video-vidhandler>        
-      
-	      <a-plane scale="1 1 1" position="0 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
-      
-     </a-entity>    
-	    
-	
-     <a-entity mindar-image-target="targetIndex: 1">
-        
-	<a-plane scale="0.8 0.8 0.8" position="0 0.5 0" rotation="0 0 0" src="#texture">
-          <a-text id="timer" clock-text value="00:00:00:00" width="1.5" height="1" position="-0.451 0.041 0.000" color="#FFFFFF"></a-text>
-        </a-plane>
-	      
-     </a-entity>
-  -->      
-      <a-entity id="marker3" mindar-image-target="targetIndex: 2" mappoint-handler>
-	
-           <a-plane id="img-map" class="clickable" scale="1 1 1" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
-        
+      <a-entity id="example-target" mindar-image-target="targetIndex: 0">
+	<a-plane id="example-plane" class="clickable" color="blue" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
       </a-entity>
-	    
-	
     </a-scene>
   </body>
 </html>
