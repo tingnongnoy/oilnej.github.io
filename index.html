@@ -131,9 +131,9 @@
       
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 	    
-      <a-entity mindar-image-target="targetIndex: 0" emitevents="true" cursor="rayOrigin: mouse" video-vidhandler>        
+      <a-entity mindar-image-target="targetIndex: 0" video-vidhandler>        
       
-	      <a-plane scale="1 1 1" position="10 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
+	      <a-plane scale="1 1 1" position="1 0.1 0" rotation="0 0 0"  material='transparent:true;src:#invitation' play="true" controls></a-plane>
       
       </a-entity>    
 	    
@@ -146,7 +146,7 @@
 	      
       </a-entity>
         
-      <a-entity mindar-image-target="targetIndex: 2" mappoint-handler>
+      <a-entity mindar-image-target="targetIndex: 2" emitevents="true" cursor="rayOrigin: mouse" mappoint-handler>
 	      
         <a-plane id="img-map" scale="0.8 0.8 0.8" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
       
