@@ -149,7 +149,10 @@
 	      
      </a-entity>
   -->      
-      <a-entity mindar-image-target="targetIndex: 2">
+      <a-entity mindar-image-target="targetIndex: 2" cursor="fuse: true; fuseTimeout: 500"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat">
 	
            <a-plane id="img-map" scale="1 1 1" position='0 0.1 0' rotation="0 0 0" material='transparent:true;src:#map-point'></a-plane>
 
