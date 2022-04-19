@@ -105,7 +105,24 @@
 
         </script>
     
-      
+      <script>
+      document.addEventListener("DOMContentLoaded", function() {
+	const sceneEl = document.querySelector('a-scene');
+	const arSystem = sceneEl.systems["mindar-image-system"];
+	
+	const img-map = document.querySelector('#img-map');
+	
+	
+	// detect click event
+	  img-map.addEventListener("click", event => {
+	  console.log("plane click");
+	  document.location.href = "https://goo.gl/maps/18dhz7fKANJEJ6KR7";
+	});
+      });
+    </script>
+	  
+	  
+	  
   </head>
   <body>
     <a-scene mindar-image="imageTargetSrc: ./targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
